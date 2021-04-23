@@ -1,2 +1,2 @@
 # RamsayBot
-:D
+A Discord Bot 
