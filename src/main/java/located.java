@@ -10,7 +10,7 @@ public class located extends ListenerAdapter {
             event.getChannel().sendFile(new File("located.jpg")).queue();
             return;
         }
-        else if ((event.getMessage().getContentRaw().toLowerCase().contains("sausage"))||(event.getMessage().getContentRaw().toLowerCase().contains("sad"))){
+        else if ((event.getMessage().getContentRaw().toLowerCase().contains("sausage"))){
             event.getChannel().sendFile(new File("sosig.jpg")).queue();
             return;
         }
