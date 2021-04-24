@@ -19,7 +19,7 @@ public class Bot {
         builder.setBulkDeleteSplittingEnabled(false);
 
         builder.setCompression(Compression.NONE);
-
+        // activity status
         builder.setActivity(Activity.playing("With my feelings"));
 
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
@@ -27,8 +27,13 @@ public class Bot {
         registerListener();
         builder.build();
     }
+
+    /**
+     * method to register functions under RamsayBot
+     */
     public static void registerListener(){
         builder.addEventListeners((new InsultListener()));
         builder.addEventListeners((new EncourageListener()));
+        builder.addEventListeners((new RecipeListener()));
     }
 }
