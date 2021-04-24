@@ -3,7 +3,7 @@ With prefix `~`, Ramsay Bot is readied to cure or deepen your depression at your
 
 Including callable functions such as: 
 - insult (self explanatory) encourage (self explanatory)
-- idiot (sandwich :D)
+- idiot <@member> (sandwich :D)
 - recipe <optional-keyword> (sends you a random recipe w/o a keyword, or 1-3 relevant ones based on the keyword)
 - alarm <@member> (wakes up your friends!)
 - bruh (reaction image!)
