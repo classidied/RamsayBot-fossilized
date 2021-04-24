@@ -14,7 +14,7 @@ import javax.security.auth.login.LoginException;
 public class Bot {
     public static JDABuilder builder;
     public static void main (String[] args) throws LoginException {
-        String token= "ODM1MjQ1OTU2NTk2NjI5NTI0.YIMpag.882RAbOshwq8mAnNFzXO8QSn7jU";
+        String token= "redacted for submission purposes";
         builder = JDABuilder.createDefault(token);
 
         builder.disableCache(CacheFlag.MEMBER_OVERRIDES,CacheFlag.VOICE_STATE);
