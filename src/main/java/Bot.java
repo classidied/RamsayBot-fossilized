@@ -1,3 +1,4 @@
+import events.joined;
 import listeners.SandwichListener;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -35,5 +36,6 @@ public class Bot {
         builder.addEventListeners((new EncourageListener()));
         builder.addEventListeners((new RecipeListener()));
         builder.addEventListeners((new SandwichListener()));
+        builder.addEventListeners((new joined()));
     }
 }
