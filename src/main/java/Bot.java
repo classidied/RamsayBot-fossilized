@@ -1,7 +1,7 @@
 import events.joined;
-import listeners.SandwichListener;
-import listeners.bruhListener;
+import listeners.imageListener;
 import listeners.joeListener;
+import listeners.textListener;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -34,13 +34,11 @@ public class Bot {
      * method to register functions under RamsayBot
      */
     public static void registerListener(){
-        builder.addEventListeners((new InsultListener()));
-        builder.addEventListeners((new EncourageListener()));
+        builder.addEventListeners((new textListener()));
         builder.addEventListeners((new RecipeListener()));
-        builder.addEventListeners((new SandwichListener()));
         builder.addEventListeners((new joined()));
         builder.addEventListeners((new located()));
-        builder.addEventListeners((new bruhListener()));
+        builder.addEventListeners((new imageListener()));
         builder.addEventListeners((new joeListener()));
     }
 }

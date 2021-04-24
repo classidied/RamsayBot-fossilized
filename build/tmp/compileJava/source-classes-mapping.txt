@@ -1,18 +1,14 @@
-InsultListener.java
- InsultListener
+listeners/imageListener.java
+ listeners.imageListener
 located.java
  located
 listeners/joeListener.java
  listeners.joeListener
-EncourageListener.java
- EncourageListener
-listeners/bruhListener.java
- listeners.bruhListener
 events/joined.java
  events.joined
-listeners/SandwichListener.java
- listeners.SandwichListener
-Bot.java
- Bot
 RecipeListener.java
  RecipeListener
+listeners/textListener.java
+ listeners.textListener
+Bot.java
+ Bot
