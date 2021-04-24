@@ -8,6 +8,7 @@ public class EncourageListener extends ListenerAdapter {
         String messageSent= event.getMessage().getContentRaw();
         if(messageSent.equalsIgnoreCase("~encourage")){
             event.getChannel().sendMessage("I believe in you!").queue();
+            return;
         }
     }
 }
