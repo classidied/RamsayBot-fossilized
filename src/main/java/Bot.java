@@ -22,7 +22,7 @@ public class Bot {
 
         builder.setCompression(Compression.NONE);
         // activity status
-        builder.setActivity(Activity.playing("With my feelings"));
+        builder.setActivity(Activity.playing("With your sanity ',:)"));
 
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
 
