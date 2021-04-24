@@ -9,12 +9,31 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class EncourageListener extends ListenerAdapter {
-
-
+    // initializing file + scanner
+    File encourageList= new File ("encouragements.csv");
+    Scanner s = null;
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
+        // creating arraylist to store all insults
+        ArrayList<String> encouragements = new ArrayList<>();
+        // try-catch to ensure file exists
+        try {
+            s = new Scanner(encourageList);
+            // reading insults into the arraylist
+            while (s.hasNextLine()) {
+                encouragements.add(s.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // randomly generating a number to choose an insult
+        Random r = new Random();
+        int num = r.nextInt(encouragements.size());
+        String encourage = encouragements.get(num);
+        // checking sent messages
         String messageSent= event.getMessage().getContentRaw();
         if(messageSent.equalsIgnoreCase("~encourage")){
-            event.getChannel().sendMessage("I believe in you!").queue();
+            event.getChannel().sendMessage(encourage).queue();
             return;
         }
     }

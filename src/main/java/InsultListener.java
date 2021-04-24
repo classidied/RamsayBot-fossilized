@@ -14,7 +14,7 @@ public class InsultListener extends ListenerAdapter {
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
         // creating arraylist to store all insults
         ArrayList<String> insults = new ArrayList<>();
-
+        // try-catch to ensure file exists
         try {
             s = new Scanner(insultList);
             // reading insults into the arraylist
