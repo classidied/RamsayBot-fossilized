@@ -9,25 +9,27 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class InsultListener extends ListenerAdapter {
-    File insultList= new File ("insult.csv");
+    File insultList= new File ("insults.csv");
     Scanner s = null;
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
-        String insult = "";
+        // creating arraylist to store all insults
+        ArrayList<String> insults = new ArrayList<>();
+        // try-catch to ensure file exists
         try {
-            s = new Scanner (insultList);
-            // creating arraylist to store all insults
-            ArrayList<String> insults = new ArrayList<>();
+            s = new Scanner(insultList);
+            // reading insults into the arraylist
             while (s.hasNextLine()) {
                 insults.add(s.nextLine());
             }
-            // randomly generating a number to choose an insult
-            Random r = new Random();
-            int num = r.nextInt(insults.size());
-            insult = insults.get(num);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        // randomly generating a number to choose an insult
+        Random r = new Random();
+        int num = r.nextInt(insults.size());
+        String insult = insults.get(num);
+        // checking for messages sent
         String messageSent= event.getMessage().getContentRaw();
         if(messageSent.equalsIgnoreCase("~insult")){
             event.getChannel().sendMessage(insult).queue();
