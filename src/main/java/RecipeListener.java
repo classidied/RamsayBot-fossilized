@@ -30,18 +30,8 @@ public class RecipeListener extends ListenerAdapter {
 
         // checking message sent, splitting into string array
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
-        // case 1: no keyword, random recipe
-        if (messageSent[0].equalsIgnoreCase("~recipe")){
-            // randomly generating a number to choose an recipe
-            int num = r.nextInt(recipes.size());
-            String recipe = recipes.get(num);
-            // splitting recipe string into the title and corresponding link
-            String[] info = recipe.split(",");
-            event.getChannel().sendMessage("Here's my recipe for " + info[0] + ":\n" + info[1] +
-                    "\nIf you don't make this immediately I will have the IRS come for you and your family.").queue();
-            return;
-        } // case 2: with keyword(s), will output (at most) 3 random recipes from a matched list
-        else if (messageSent[0].equalsIgnoreCase("~recipe") && messageSent[1] != null) {
+        // case 1: with keyword
+        if (messageSent[0].equalsIgnoreCase("~recipe")) {
             System.out.println ("suh");
             // perform linear search to match keywords with recipes, store the matched recipes in an arraylist
             ArrayList<String> options = new ArrayList<>();
@@ -69,6 +59,16 @@ public class RecipeListener extends ListenerAdapter {
                             "\nIf you screw up making one of my recipes, I will know.").queue();
                 }
             }
+            return;
+        } // case 2: random w/o keyword
+        else if (messageSent[0].equalsIgnoreCase("~recipe")) {
+            // randomly generating a number to choose an recipe
+            int num = r.nextInt(recipes.size());
+            String recipe = recipes.get(num);
+            // splitting recipe string into the title and corresponding link
+            String[] info = recipe.split(",");
+            event.getChannel().sendMessage("Here's my recipe for " + info[0] + ":\n" + info[1] +
+                    "\nIf you don't make this immediately I will have the IRS come for you and your family.").queue();
             return;
         }
     }
