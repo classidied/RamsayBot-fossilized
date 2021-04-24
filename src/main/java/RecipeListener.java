@@ -3,6 +3,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -58,17 +59,17 @@ public class RecipeListener extends ListenerAdapter {
                 event.getChannel().sendMessage("Here's a recipe that matched your input: " + info2[0] + ":\n" + info2[1] +
                         "\nIf you screw up making this, I will know.").queue();
             } else {
-                // choosing at most 3 recipes
-                // sending message on a loop
-                for (int i = 0; i < options.size(); i++) {
+                // sending max of 3 recipes
+                event.getChannel().sendMessage("Here are a few recipes that matched your input:\n").queue();
+                for (int i = 0; i < 3; i++) {
                     String[] info2 = options.get(i).split(",");
-                    event.getChannel().sendMessage("Here are a few recipes that matched your input: " + info2[0] + ":\n" + info2[1] +
-                            "\nIf you screw up making one of my recipes, I will know.").queue();
+                    event.getChannel().sendMessage(info2[0] + ": " + info2[1]).queue();
                 }
+                event.getChannel().sendMessage("\nIf you screw up making one of my recipes, I will know.").queue();
             }
             return;
         } // case 2: random w/o keyword
-        else if (messageSent[0].equalsIgnoreCase("~recipe")) {
+        else if (message[0].equalsIgnoreCase("~recipe")) {
             // randomly generating a number to choose an recipe
             int num = r.nextInt(recipes.size());
             String recipe = recipes.get(num);
