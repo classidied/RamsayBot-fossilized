@@ -34,29 +34,27 @@ public class RecipeListener extends ListenerAdapter {
         String[] info = recipe.split(","); // splitting recipe string into the title and corresponding link
 
         // checking message sent, splitting into string array
-        String messageSent = event.getMessage().getContentRaw();
-        String[] command = messageSent.split(" ", 1); // delimit the command and keyword(s) by first space
-        // testing
-        event.getChannel().sendMessage("message sent split into string array:" + command[0] + ", " + command[1]);
+        String[] messageSent = event.getMessage().getContentRaw().split(" ", 1);
+
         // case 1: no keyword, random recipe
-        if(messageSent.equalsIgnoreCase("~recipe")){
+        if (messageSent[0].equalsIgnoreCase("~recipe")){
             event.getChannel().sendMessage("Here's my recipe for " + info[0] + ":\n" + info[1] +
                     "\nIf you don't make this immediately I will have the IRS come for you and your family.").queue();
             return;
         } // case 2: with keyword(s), will output (at most) 3 random recipes from a matched list
-        else if (command[0].equalsIgnoreCase("~recipe") && !(command[1].equals(null))) {
+        else if (messageSent[0].equalsIgnoreCase("~recipe") && !(messageSent[1].equals(null))) {
             // perform linear search to match keywords with recipes, store the matched recipes in an arraylist
             ArrayList<String> options = new ArrayList<>();
             for (int i = 0; i < recipes.size(); i++) {
-                String[] checkInfo = recipe.split(",");
+                String[] checkInfo = recipe.toLowerCase().split(",");
                 // checks if the recipes (through titles) contain keywords
-                if (checkInfo[0].toLowerCase().contains(command[1])) {
+                if (checkInfo[0].contains(messageSent[1])) {
                     options.add(recipes.get(i));
                 }
             }
             // exception handling + sending recipes
             if (options.size() == 0) {
-                event.getChannel().sendMessage("It appears that I do not have a recipe for \"" + command[1] + "\".\n" +
+                event.getChannel().sendMessage("It appears that I do not have a recipe for \"" + messageSent[1] + "\".\n" +
                         "If you wish, you can try again using less keywords or specificity.");
             } else if (options.size() == 1) {
                 String[] info2 = options.get(0).split(",");
