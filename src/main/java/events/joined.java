@@ -8,6 +8,7 @@ import javax.xml.bind.Marshaller;
 import java.util.Random;
 
 public class joined extends ListenerAdapter {
+    //list of pre-made messages
     String[] messages = {
             "Welcome to Hell's Kitchen, [member]!",
             "Did you bring the lamb sauce with you, [member]?",
@@ -16,11 +17,11 @@ public class joined extends ListenerAdapter {
             "Don't burn the ice cream, [member]!",
             "[member], you are the idiot to my sandwich <3"};
     public void onGuildMemberJoin (GuildMemberJoinEvent event){
-        Random rand = new Random();
+        Random rand = new Random();//choose a random message
         int number = rand.nextInt(messages.length);
         EmbedBuilder join = new EmbedBuilder();
 
         join.setDescription(messages[number].replace("[member]", event.getMember().getAsMention()));
-        event.getGuild().getDefaultChannel().sendMessage(join.build()).queue();
+        event.getGuild().getDefaultChannel().sendMessage(join.build()).queue();//display the message
     }
 }

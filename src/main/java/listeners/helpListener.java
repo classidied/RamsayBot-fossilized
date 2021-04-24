@@ -8,6 +8,9 @@ import javax.annotation.Nonnull;
 import java.awt.*;
 
 public class helpListener extends ListenerAdapter {
+    /*
+    Display all of the available functions with a short description.
+     */
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
         if (event.getMessage().getContentRaw().equalsIgnoreCase("~help")){
             EmbedBuilder help= new EmbedBuilder();
@@ -20,7 +23,7 @@ public class helpListener extends ListenerAdapter {
             help.addField("~alarm <@member>","I Awake your fellow members",false);
             help.addField("~recipe <keyword> (Keyword is optional)","I Send recipes from my website",false);
             help.setColor(Color.RED);
-            event.getChannel().sendMessage(help.build()).queue();
+            event.getChannel().sendMessage(help.build()).queue();//display
             return;
         }
     }
