@@ -10,7 +10,7 @@ public class bruhListener extends ListenerAdapter {
 
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event) {
         if (event.getMessage().getContentRaw().toLowerCase().contains("~bruh")) {
-
+            event.getMessage().delete().queue();
             event.getChannel().sendFile(new File("bruh.jpg")).queue();
             return;
         }
