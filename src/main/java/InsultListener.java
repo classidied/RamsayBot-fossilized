@@ -9,10 +9,9 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class InsultListener extends ListenerAdapter {
-    File insultList= new File ("insult.csv");
+    File insultList= new File ("insults.csv");
     Scanner s = null;
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
-        String insult;
         // creating arraylist to store all insults
         ArrayList<String> insults = new ArrayList<>();
 
@@ -29,7 +28,7 @@ public class InsultListener extends ListenerAdapter {
         // randomly generating a number to choose an insult
         Random r = new Random();
         int num = r.nextInt(insults.size());
-        insult = insults.get(num);
+        String insult = insults.get(num);
         // checking for messages sent
         String messageSent= event.getMessage().getContentRaw();
         if(messageSent.equalsIgnoreCase("~insult")){
