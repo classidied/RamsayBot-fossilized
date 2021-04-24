@@ -30,21 +30,28 @@ public class RecipeListener extends ListenerAdapter {
 
         // checking message sent, splitting into string array
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
+        String[] message = new String[2];
+        //  ensuring message array has 2 fields so we don't get a heckin indexoutofobounds exception
+        if (messageSent.length == 1) {
+            message[0] = messageSent[0];
+            message[1] = "";
+        } else {
+            message = messageSent;
+        }
         // case 1: with keyword
-        if (messageSent[0].equalsIgnoreCase("~recipe")) {
-            System.out.println ("suh");
+        if (message[0].equalsIgnoreCase("~recipe") && !(message[1].equals(""))) {
             // perform linear search to match keywords with recipes, store the matched recipes in an arraylist
             ArrayList<String> options = new ArrayList<>();
             for (int i = 0; i < recipes.size(); i++) {
                 String checkInfo = recipes.get(i).toLowerCase();
                 // checks if the recipes (through titles) contain keywords
-                if (checkInfo.contains(messageSent[1])) {
+                if (checkInfo.contains(message[1])) {
                     options.add(recipes.get(i));
                 }
             }
             // exception handling + sending recipes
             if (options.size() == 0) {
-                event.getChannel().sendMessage("It appears that I do not have a recipe for \"" + messageSent[1] + "\".\n" +
+                event.getChannel().sendMessage("It appears that I do not have a recipe for \"" + message[1] + "\".\n" +
                         "If you wish, you can try again using less keywords or specificity.");
             } else if (options.size() == 1) {
                 String[] info2 = options.get(0).split(",");
