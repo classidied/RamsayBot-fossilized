@@ -1,6 +1,7 @@
 import events.joined;
 import listeners.SandwichListener;
 import listeners.bruhListener;
+import listeners.joeListener;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -40,5 +41,6 @@ public class Bot {
         builder.addEventListeners((new joined()));
         builder.addEventListeners((new located()));
         builder.addEventListeners((new bruhListener()));
+        builder.addEventListeners((new joeListener()));
     }
 }
