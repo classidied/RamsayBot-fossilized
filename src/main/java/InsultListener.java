@@ -12,21 +12,20 @@ public class InsultListener extends ListenerAdapter {
     File insultList= new File ("insult.csv");
     Scanner s = null;
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
-        String insult = "you donkey!";
+        String insult;
         // creating arraylist to store all insults
         ArrayList<String> insults = new ArrayList<>();
-        {
-            try {
-                s = new Scanner(insultList);
 
-                while (s.hasNextLine()) {
-                    insults.add(s.nextLine());
-                }
-                System.out.println(insults);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+        try {
+            s = new Scanner(insultList);
+            // reading insults into the arraylist
+            while (s.hasNextLine()) {
+                insults.add(s.nextLine());
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
         // randomly generating a number to choose an insult
         Random r = new Random();
         int num = r.nextInt(insults.size());
