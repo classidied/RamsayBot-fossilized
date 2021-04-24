@@ -3,6 +3,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -30,38 +31,45 @@ public class RecipeListener extends ListenerAdapter {
 
         // checking message sent, splitting into string array
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
+        String[] message = new String[2];
+        //  ensuring message array has 2 fields so we don't get a heckin indexoutofobounds exception
+        if (messageSent.length == 1) {
+            message[0] = messageSent[0];
+            message[1] = "";
+        } else {
+            message = messageSent;
+        }
         // case 1: with keyword
-        if (messageSent[0].equalsIgnoreCase("~recipe")) {
-            System.out.println ("suh");
+        if (message[0].equalsIgnoreCase("~recipe") && !(message[1].equals(""))) {
             // perform linear search to match keywords with recipes, store the matched recipes in an arraylist
             ArrayList<String> options = new ArrayList<>();
             for (int i = 0; i < recipes.size(); i++) {
                 String checkInfo = recipes.get(i).toLowerCase();
                 // checks if the recipes (through titles) contain keywords
-                if (checkInfo.contains(messageSent[1])) {
+                if (checkInfo.contains(message[1])) {
                     options.add(recipes.get(i));
                 }
             }
             // exception handling + sending recipes
             if (options.size() == 0) {
-                event.getChannel().sendMessage("It appears that I do not have a recipe for \"" + messageSent[1] + "\".\n" +
+                event.getChannel().sendMessage("It appears that I do not have a recipe for \"" + message[1] + "\".\n" +
                         "If you wish, you can try again using less keywords or specificity.");
             } else if (options.size() == 1) {
                 String[] info2 = options.get(0).split(",");
                 event.getChannel().sendMessage("Here's a recipe that matched your input: " + info2[0] + ":\n" + info2[1] +
                         "\nIf you screw up making this, I will know.").queue();
             } else {
-                // choosing at most 3 recipes
-                // sending message on a loop
-                for (int i = 0; i < options.size(); i++) {
+                // sending max of 3 recipes
+                event.getChannel().sendMessage("Here are a few recipes that matched your input:\n").queue();
+                for (int i = 0; i < 3; i++) {
                     String[] info2 = options.get(i).split(",");
-                    event.getChannel().sendMessage("Here are a few recipes that matched your input: " + info2[0] + ":\n" + info2[1] +
-                            "\nIf you screw up making one of my recipes, I will know.").queue();
+                    event.getChannel().sendMessage(info2[0] + ": " + info2[1]).queue();
                 }
+                event.getChannel().sendMessage("\nIf you screw up making one of my recipes, I will know.").queue();
             }
             return;
         } // case 2: random w/o keyword
-        else if (messageSent[0].equalsIgnoreCase("~recipe")) {
+        else if (message[0].equalsIgnoreCase("~recipe")) {
             // randomly generating a number to choose an recipe
             int num = r.nextInt(recipes.size());
             String recipe = recipes.get(num);
