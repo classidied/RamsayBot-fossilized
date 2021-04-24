@@ -1,4 +1,5 @@
 import events.joined;
+import listeners.helpListener;
 import listeners.imageListener;
 import listeners.joeListener;
 import listeners.textListener;
@@ -22,7 +23,7 @@ public class Bot {
 
         builder.setCompression(Compression.NONE);
         // activity status
-        builder.setActivity(Activity.playing("With my feelings"));
+        builder.setActivity(Activity.playing("~help"));
 
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
 
@@ -40,5 +41,6 @@ public class Bot {
         builder.addEventListeners((new located()));
         builder.addEventListeners((new imageListener()));
         builder.addEventListeners((new joeListener()));
+        builder.addEventListeners((new helpListener()));
     }
 }
