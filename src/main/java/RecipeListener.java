@@ -9,12 +9,11 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 public class RecipeListener extends ListenerAdapter {
-    // init file + scanner + random object
-    File recipeList = new File ("recipes.csv");
-    Scanner s = null;
-    Random r = new Random();
-
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
+        // init file + scanner + random object
+        File recipeList = new File ("recipes - Sheet1.csv");
+        Scanner s;
+        Random r = new Random();
         // creating arraylist to store all recipes + associated links
         ArrayList<String> recipes = new ArrayList<>();
         // try-catch to ensure file exists
@@ -28,6 +27,8 @@ public class RecipeListener extends ListenerAdapter {
             e.printStackTrace();
         }
 
+        // testing
+        System.out.println("size of recipes list:" + recipes.size()); // 17?????
         // checking message sent, splitting into string array
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
         String[] message = new String[2];

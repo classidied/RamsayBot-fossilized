@@ -32,6 +32,7 @@ public class textListener extends ListenerAdapter {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+
             int num = r.nextInt(listOfPhrases.size());
             String insult = listOfPhrases.get(num);
             event.getChannel().sendMessage(insult).queue();
