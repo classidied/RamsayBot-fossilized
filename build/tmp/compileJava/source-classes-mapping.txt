@@ -4,11 +4,11 @@ listeners/imageListener.java
  listeners.imageListener
 located.java
  located
-listeners/joeListener.java
- listeners.joeListener
-events/joined.java
- events.joined
 Bot.java
  Bot
+events/joined.java
+ events.joined
 RecipeListener.java
  RecipeListener
+listeners/joeListener.java
+ listeners.joeListener

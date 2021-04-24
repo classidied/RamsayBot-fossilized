@@ -28,8 +28,6 @@ public class RecipeListener extends ListenerAdapter {
             e.printStackTrace();
         }
 
-        // testing
-        System.out.println("size of recipes list:" + recipes.size()); // 17?????
         // checking message sent, splitting into string array
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
         String[] message = new String[2];

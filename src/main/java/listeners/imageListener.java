@@ -32,5 +32,17 @@ public class imageListener extends ListenerAdapter {
             event.getChannel().sendMessage("<@"+id+">").addFile(new File("wake.gif")).queue();//send file and mention
             return;
         }
+        else if (event.getMessage().getContentRaw().toLowerCase().contains("~idiot")){//keyword
+            List<Member> mentionedMember = event.getMessage().getMentionedMembers();//get member id to mention them
+            String id;
+            if (mentionedMember.isEmpty()) {
+                id = event.getAuthor().getId();
+            }
+            else {
+                id = mentionedMember.get(0).getId();
+            }
+            event.getChannel().sendMessage("<@"+id+">").addFile(new File("idiotsandwich.png")).queue();//send file and mention
+            return;
+        }
     }
 }
