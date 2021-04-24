@@ -29,8 +29,7 @@ public class RecipeListener extends ListenerAdapter {
         }
 
         // checking message sent, splitting into string array
-        String[] messageSent = event.getMessage().getContentRaw().split(" ", 1);
-
+        String[] messageSent = event.getMessage().getContentRaw().split(" ");
         // case 1: no keyword, random recipe
         if (messageSent[0].equalsIgnoreCase("~recipe")){
             // randomly generating a number to choose an recipe
@@ -42,7 +41,8 @@ public class RecipeListener extends ListenerAdapter {
                     "\nIf you don't make this immediately I will have the IRS come for you and your family.").queue();
             return;
         } // case 2: with keyword(s), will output (at most) 3 random recipes from a matched list
-        else if (messageSent[0].equalsIgnoreCase("~recipe") && !(messageSent[1].equals(""))) {
+        else if (messageSent[0].equalsIgnoreCase("~recipe") && messageSent[1] != null) {
+            System.out.println ("suh");
             // perform linear search to match keywords with recipes, store the matched recipes in an arraylist
             ArrayList<String> options = new ArrayList<>();
             for (int i = 0; i < recipes.size(); i++) {
