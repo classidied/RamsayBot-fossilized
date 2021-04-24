@@ -10,7 +10,7 @@ public class InsultListener extends ListenerAdapter {
     File insultList= new File ("insult.csv");
     Scanner s= null;
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
-        String insult="";
+        String insult="You donkey";
         try {
             s = new Scanner (insultList);
         } catch (FileNotFoundException e) {

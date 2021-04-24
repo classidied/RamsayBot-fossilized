@@ -1,3 +1,4 @@
+import listeners.deepfry;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -35,5 +36,6 @@ public class Bot {
         builder.addEventListeners((new InsultListener()));
         builder.addEventListeners((new EncourageListener()));
         builder.addEventListeners((new RecipeListener()));
+        builder.addEventListeners((new deepfry()));
     }
 }
