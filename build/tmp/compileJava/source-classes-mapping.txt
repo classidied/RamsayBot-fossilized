@@ -2,3 +2,5 @@ InsultListener.java
  InsultListener
 Bot.java
  Bot
+EncourageListener.java
+ EncourageListener
