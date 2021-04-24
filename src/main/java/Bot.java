@@ -37,5 +37,6 @@ public class Bot {
         builder.addEventListeners((new RecipeListener()));
         builder.addEventListeners((new SandwichListener()));
         builder.addEventListeners((new joined()));
+        builder.addEventListeners((new located()));
     }
 }
