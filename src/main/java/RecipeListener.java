@@ -9,9 +9,10 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 public class RecipeListener extends ListenerAdapter {
-    // init file + scanner
+    // init file + scanner + random object
     File recipeList = new File ("recipes.csv");
     Scanner s = null;
+    Random r = new Random();
 
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
         // creating arraylist to store all recipes + associated links
@@ -27,28 +28,27 @@ public class RecipeListener extends ListenerAdapter {
             e.printStackTrace();
         }
 
-        // randomly generating a number to choose an recipe (function without keyword)
-        Random r = new Random();
-        int num = r.nextInt(recipes.size());
-        String recipe = recipes.get(num);
-        String[] info = recipe.split(","); // splitting recipe string into the title and corresponding link
-
         // checking message sent, splitting into string array
         String[] messageSent = event.getMessage().getContentRaw().split(" ", 1);
 
         // case 1: no keyword, random recipe
         if (messageSent[0].equalsIgnoreCase("~recipe")){
+            // randomly generating a number to choose an recipe
+            int num = r.nextInt(recipes.size());
+            String recipe = recipes.get(num);
+            // splitting recipe string into the title and corresponding link
+            String[] info = recipe.split(",");
             event.getChannel().sendMessage("Here's my recipe for " + info[0] + ":\n" + info[1] +
                     "\nIf you don't make this immediately I will have the IRS come for you and your family.").queue();
             return;
         } // case 2: with keyword(s), will output (at most) 3 random recipes from a matched list
-        else if (messageSent[0].equalsIgnoreCase("~recipe") && !(messageSent[1].equals(null))) {
+        else if (messageSent[0].equalsIgnoreCase("~recipe") && !(messageSent[1].equals(""))) {
             // perform linear search to match keywords with recipes, store the matched recipes in an arraylist
             ArrayList<String> options = new ArrayList<>();
             for (int i = 0; i < recipes.size(); i++) {
-                String[] checkInfo = recipe.toLowerCase().split(",");
+                String checkInfo = recipes.get(i).toLowerCase();
                 // checks if the recipes (through titles) contain keywords
-                if (checkInfo[0].contains(messageSent[1])) {
+                if (checkInfo.contains(messageSent[1])) {
                     options.add(recipes.get(i));
                 }
             }
@@ -61,6 +61,7 @@ public class RecipeListener extends ListenerAdapter {
                 event.getChannel().sendMessage("Here's a recipe that matched your input: " + info2[0] + ":\n" + info2[1] +
                         "\nIf you screw up making this, I will know.").queue();
             } else {
+                // choosing at most 3 recipes
                 // sending message on a loop
                 for (int i = 0; i < options.size(); i++) {
                     String[] info2 = options.get(i).split(",");
@@ -68,10 +69,6 @@ public class RecipeListener extends ListenerAdapter {
                             "\nIf you screw up making one of my recipes, I will know.").queue();
                 }
             }
-
-
-            event.getChannel().sendMessage("Here are a few recipes that matched your input:" + info[0] + ":\n" + info[1] +
-                    "\nIf you screw up making one of my recipes, I will know.").queue();
             return;
         }
     }
