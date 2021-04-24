@@ -23,7 +23,11 @@ public class Bot {
         builder.setActivity(Activity.playing("With my feelings"));
 
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
-        builder.build();
 
+        registerListener();
+        builder.build();
+    }
+    public static void registerListener(){
+        builder.addEventListeners((new InsultListener()));
     }
 }
