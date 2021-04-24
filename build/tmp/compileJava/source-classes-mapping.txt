@@ -1,13 +1,13 @@
-events/joined.java
- events.joined
+listeners/textListener.java
+ listeners.textListener
 listeners/imageListener.java
  listeners.imageListener
 located.java
  located
 listeners/joeListener.java
  listeners.joeListener
-listeners/textListener.java
- listeners.textListener
+events/joined.java
+ events.joined
 Bot.java
  Bot
 RecipeListener.java

@@ -3,6 +3,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ import javax.annotation.Nonnull;
 public class RecipeListener extends ListenerAdapter {
     public void onGuildMessageReceived (@Nonnull GuildMessageReceivedEvent event){
         // init file + scanner + random object
-        File recipeList = new File ("recipes - Sheet1.csv");
+        File recipeList = new File ("recipe.csv");
         Scanner s;
         Random r = new Random();
         // creating arraylist to store all recipes + associated links
@@ -20,7 +21,7 @@ public class RecipeListener extends ListenerAdapter {
         try {
             s = new Scanner(recipeList);
             // reading insults into the arraylist
-            while (s.hasNextLine()) {
+            while (s.hasNext()) {
                 recipes.add(s.nextLine());
             }
         } catch (FileNotFoundException e) {
