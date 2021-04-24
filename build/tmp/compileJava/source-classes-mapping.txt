@@ -1,9 +1,9 @@
+InsultListener.java
+ InsultListener
 RecipeListener.java
  RecipeListener
 EncourageListener.java
  EncourageListener
-InsultListener.java
- InsultListener
 Bot.java
  Bot
 listeners/deepfry.java
