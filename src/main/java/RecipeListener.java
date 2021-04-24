@@ -1,4 +1,3 @@
-import com.sun.jna.WString;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.io.File;
@@ -37,6 +36,8 @@ public class RecipeListener extends ListenerAdapter {
         // checking message sent, splitting into string array
         String messageSent = event.getMessage().getContentRaw();
         String[] command = messageSent.split(" ", 1); // delimit the command and keyword(s) by first space
+        // testing
+        event.getChannel().sendMessage("message sent split into string array:" + command[0] + ", " + command[1]);
         // case 1: no keyword, random recipe
         if(messageSent.equalsIgnoreCase("~recipe")){
             event.getChannel().sendMessage("Here's my recipe for " + info[0] + ":\n" + info[1] +
@@ -49,7 +50,7 @@ public class RecipeListener extends ListenerAdapter {
             for (int i = 0; i < recipes.size(); i++) {
                 String[] checkInfo = recipe.split(",");
                 // checks if the recipes (through titles) contain keywords
-                if (checkInfo[0].contains(command[1])) {
+                if (checkInfo[0].toLowerCase().contains(command[1])) {
                     options.add(recipes.get(i));
                 }
             }
