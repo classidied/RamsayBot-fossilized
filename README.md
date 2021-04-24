@@ -10,4 +10,4 @@ Including callable functions such as:
   
 As well as non-controllable functions:
   - there are 3 different words that when typed, will invoke Gordon Ramsay himself to personally send his favorite photos of himself to the server
-  - Ramsay is known as nothing else than the world's greatest samaritian, a saint among Jesus himself, thus it is only fitting that he bequeathes any unfortunate young soul who falls for "who's joe" jokes
+  - Ramsay is known as nothing else than the world's greatest samaritian, a saint among Jesus himself, thus it is only fitting that he protects all the young, unfortunate souls who fall for obscenely overused jokes ("who's joe") 
