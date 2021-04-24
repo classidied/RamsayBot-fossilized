@@ -29,5 +29,6 @@ public class Bot {
     }
     public static void registerListener(){
         builder.addEventListeners((new InsultListener()));
+        builder.addEventListeners((new EncourageListener()));
     }
 }
