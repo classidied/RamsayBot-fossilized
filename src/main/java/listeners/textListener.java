@@ -34,7 +34,7 @@ public class textListener extends ListenerAdapter {
             }
 
             int num = r.nextInt(listOfPhrases.size());
-            String insult = listOfPhrases.get(num);
+            String insult = listOfPhrases.get(num);//send a random insult
             event.getChannel().sendMessage(insult).queue();
             return;
         }
@@ -53,7 +53,7 @@ public class textListener extends ListenerAdapter {
                 e.printStackTrace();
             }
             int num = r.nextInt(listOfPhrases.size());
-            String encourage = listOfPhrases.get(num);
+            String encourage = listOfPhrases.get(num);//send a random encouragement
             event.getChannel().sendMessage(encourage).queue();
             return;
         }
