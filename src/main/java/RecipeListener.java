@@ -60,7 +60,7 @@ public class RecipeListener extends ListenerAdapter {
             } else {
                 // sending max of 3 recipes
                 event.getChannel().sendMessage("Here are a few recipes that matched your input:\n").queue();
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < options.size(); i++) {
                     String[] info2 = options.get(i).split(",");
                     event.getChannel().sendMessage(info2[0] + ": " + info2[1] + "\n").queue();
                 }

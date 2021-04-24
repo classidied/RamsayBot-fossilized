@@ -16,7 +16,7 @@ public class imageListener extends ListenerAdapter {
             event.getChannel().sendFile(new File("bruh.jpg")).queue();
             return;
         }
-        else if (event.getMessage().getContentRaw().toLowerCase().contains("eat")){
+        else if (event.getMessage().getContentRaw().toLowerCase().contains(" eat ") || event.getMessage().getContentRaw().equalsIgnoreCase("eat")){
             event.getChannel().sendFile(new File("lick.PNG")).queue();
             return;
         }
